@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique:true,
+        unique: true,
     },
     fullName: {
         type: String,
@@ -15,17 +15,17 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength:6
+        minLength: 6
     },
     email: {
-        type: String, 
+        type: String,
         required: true,
-        unique:true
+        unique: true
     },
-    followers:[{
+    followers: [{
         type: mongoose.Schema.Types.ObjectId,
         red: "User",
-        default:[]
+        default: []
     }],
     following: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     }],
     profileImg: {
         type: String,
-        default:"",
+        default: "",
     },
     coverImg: {
         type: String,
@@ -42,12 +42,19 @@ const userSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
-      default:""  
+        default: ""
     },
     link: {
         type: String,
-        default:""
+        default: ""
+    },
+    likedPost: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Post",
+            default:[]
     }
+    ]
 
 }, { timestamps: true })
 
