@@ -41,6 +41,7 @@ function SignupPage() {
         },
         onSuccess: () => {
             toast.success("Account Added Successfully")
+            queryClient.invalidateQueries({ queryKey: ["authuser"] });
         }
     })
 
