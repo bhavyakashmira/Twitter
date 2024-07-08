@@ -5,6 +5,7 @@ import cookieparser from "cookie-parser"
 import ConnectMongoDb from "./db/connectMongoDb.js";
 import userRouter from "./routes/user.routes.js";
 import { v2 as cloudinary } from "cloudinary";
+import notificationRouter from "./routes/notification.routes.js";
 import postRouter from "./routes/post.routes.js";
 dotenv.config();
 
@@ -18,13 +19,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-app.use(express.json());
+app.use(express.json({limit:"5mb"}));
 app.use(cookieparser());
 app.use(express.urlencoded({extended:true}))
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
-app.use("/api/posts", postRouter)
+app.use("/api/posts", postRouter);
+app.use("/api/notification", notificationRouter)
 app.listen(PORT, () => {
     console.log("server is running")
     ConnectMongoDb();
